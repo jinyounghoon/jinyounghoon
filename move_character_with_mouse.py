@@ -36,8 +36,8 @@ hide_cursor()
 while running:
     clear_canvas()
     kpu_ground.draw(KPU_WIDTH // 2, KPU_HEIGHT // 2)
-    mouse.clip_draw(0, 0, 100, 100, x, y)
-    character.clip_draw(frame * 100, 100 * 1, 100, 100, z, c)
+    mouse.clip_draw(0, 0, 100, 100, x, y, 50, 50)
+    character.clip_draw(frame * 100, 100 * 1, 100, 100, z, c,)
     update_canvas()
     frame = (frame + 1) % 8
 
