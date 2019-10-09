@@ -14,11 +14,18 @@ def handle_events():
        elif event.type == SDL_MOUSEMOTION:
            x, y = event.x, KPU_HEIGHT - 1 - event.y
        elif event.type == SDL_MOUSEBUTTONDOWN:
-           if event.key == SDL_BUTTON_LEFT:
+           if event.button == SDL_BUTTON_LEFT:
                z, c = event.x, KPU_HEIGHT - 1 - event.y
        elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             running = False
 
+
+def draw_line(p1, p2):
+    for i in range(0, 100 + 1, 2):
+        t = i / 100
+    x = (1 - t) * p1[0] + t * p2[0]
+    y = (1 - t) * p1[1] + t * p2[1]
+    character.clip_draw(frame * 100, 100 * 1, 100, 100, x, y)
 
 
 open_canvas(KPU_WIDTH, KPU_HEIGHT)
@@ -37,7 +44,7 @@ while running:
     clear_canvas()
     kpu_ground.draw(KPU_WIDTH // 2, KPU_HEIGHT // 2)
     mouse.clip_draw(0, 0, 100, 100, x, y, 50, 50)
-    character.clip_draw(frame * 100, 100 * 1, 100, 100, z, c,)
+    draw_line((x, y), (z, c))
     update_canvas()
     frame = (frame + 1) % 8
 
